@@ -1,21 +1,19 @@
 from cnvrg import Endpoint
-from scipy.misc.pilutil import imread, imresize
+from PIL import Image
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import numpy as np
-import tensorflow as tf
-import keras
 #perform the prediction
 from keras.models import load_model
 #include custom charts in logging
 e = Endpoint()
-model = load_model('output/mnist_model.h5')
+model = load_model('mnist_model.h5')
 
-# load an image and predict the class
 def predict(file_path):
-    x = imread(file_path, mode='L')
+    #load the image as grayscale and make it the right size
+    x = np.asarray(Image.open(file_path).convert('L').resize(size=(28,28)))
     #compute a bit-wise inversion so black becomes white and vice versa
     x = np.invert(x)
-    #make it the right size
-    x = imresize(x,(28,28))
     #convert to a 4D tensor to feed into our model
     x = x.reshape(1,28,28,1)
     x = x.astype('float32')
