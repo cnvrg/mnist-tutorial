@@ -1,5 +1,4 @@
 # Core
-keras>=2.2
-tensorflow >=1.14
-tensorflow-cpu>=2.2.0
-scipy<=1.2.0
+tensorflow==2.4.0
+Keras==2.4.3
+scipy==1.5.3 #predict needs 1.2.1 or change code to use pillow
