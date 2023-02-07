@@ -57,8 +57,9 @@ print('cnvrg_tag_train_samples:', x_train.shape[0])
 print('cnvrg_tag_test_samples:', x_test.shape[0])
 
 # convert class vectors to binary class matrices
-y_train = keras.utils.np_utils.to_categorical(y_train, num_classes)
-y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
+y_train = tf.keras.utils.to_categorical(y_train, num_classes)
+
+y_test = tf.keras.utils.to_categorical(y_test, num_classes)
 
 
 tbCallback = keras.callbacks.TensorBoard(histogram_freq=0, write_graph=True, write_images=True)
